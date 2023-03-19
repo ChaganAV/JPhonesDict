@@ -20,11 +20,8 @@ public class Menu {
         this.items = items;
     }
     public Boolean inputComand(String item){
-        Boolean result = true ;
-        if(item.equals("5")){
-            result = false;
-        }
-        return result;
+        Controler controler = new Controler(item);
+        return controler.run();
     }
     public void printItem(Integer item){
         System.out.println(String.format("%d - %s",item,items.get((Integer) item)));

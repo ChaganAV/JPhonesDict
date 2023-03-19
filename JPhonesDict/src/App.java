@@ -3,8 +3,8 @@ public class App {
     public void Start(){
         setTitle("=== Телефонный справочник ===");
         System.out.println(getTitle());
-        View view = new View();
-        view.getInput();
+        ViewMain view = new ViewMain();
+        view.get();
     }
 
     public String getTitle() {

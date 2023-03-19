@@ -1,8 +1,9 @@
 import java.util.Map;
 import java.util.Scanner;
 
-public class View {
-    public void getInput(){
+public class ViewMain implements Viewable{
+    @Override
+    public void get(){
         Boolean flag = true;
         Scanner scanner = new Scanner(System.in);
         while(flag){
@@ -14,5 +15,10 @@ public class View {
             String input = scanner.nextLine();
             flag = menu.inputComand(input);
         }
+    }
+
+    @Override
+    public Line post() {
+        return null;
     }
 }

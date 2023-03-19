@@ -8,11 +8,11 @@ import java.util.List;
 public class TxtRepository implements Repositable{
     private String dir;
     private String filename;
-    List<Record> list;
+    List<Record> records;
 
-    public TxtRepository(String dir, String filename) {
-        this.dir = dir;
-        this.filename = filename;
+    public TxtRepository() {
+        this.dir = System.getProperty("user.dir");
+        this.filename = "Phone.ph";
     }
     @Override
     public List<Record> getData() {
@@ -40,5 +40,34 @@ public class TxtRepository implements Repositable{
             System.out.println(e.getMessage());
         }
         return records;
+    }
+
+    @Override
+    public void setData() {
+
+    }
+
+    public String getDir() {
+        return dir;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public List<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<Record> list) {
+        this.records = list;
     }
 }
