@@ -20,7 +20,9 @@ public class Person {
         this.secondname = "";
         this.lastname = "";
     }
+    public Person(){
 
+    }
     public String getFirstname() {
         return firstname;
     }
