@@ -12,4 +12,9 @@ public class Phone {
     public Phone(String number) {
         this.number = number;
     }
+
+    @Override
+    public String toString() {
+        return getNumber();
+    }
 }

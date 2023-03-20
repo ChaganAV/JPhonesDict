@@ -9,7 +9,7 @@ public class ViewAdd implements Viewable{
     @Override
     public Record post() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите номер телефона: ");
+        System.out.println("Введите номер телефона в формате 99-99-99: ");
         String input = scanner.nextLine();
         Phone phone = new Phone(input);
         Person person = new Person();

@@ -1,18 +1,15 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TxtRepository implements Repositable{
+public class TxtRepository implements Repositable {
     private String dir;
     private String filename;
     List<Record> records;
 
     public TxtRepository() {
         this.dir = System.getProperty("user.dir");
-        this.filename = "Phone.ph";
+        this.filename = "Phone.txt";
     }
     @Override
     public List<Record> getData() {
@@ -33,9 +30,10 @@ public class TxtRepository implements Repositable{
                     Record record = new Record(phone,person);
                     records.add(record);
                 }
-            }else{
-                file.createNewFile();
             }
+//            else{
+//                file.createNewFile();
+//            }
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
@@ -44,7 +42,22 @@ public class TxtRepository implements Repositable{
 
     @Override
     public void setData() {
-
+        File file = new File(this.dir,this.filename);
+        try {
+            if(!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for(Record record: records){
+                String rec = String.format("%s;%s;",record.getPhone().getNumber(),record.getPerson().toString());
+                bw.write(rec);
+                bw.newLine();
+            }
+            bw.close();
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getDir() {

@@ -46,4 +46,9 @@ public class Person {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s %s",this.firstname,this.secondname,this.lastname);
+    }
 }

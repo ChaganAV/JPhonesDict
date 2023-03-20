@@ -10,7 +10,4 @@ public class Repository{
     public void add(Record record){
         repository.add(record);
     }
-    public void save(Repositable repositable){
-        repositable.setData();
-    }
 }
