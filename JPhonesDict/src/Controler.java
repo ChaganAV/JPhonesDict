@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Controler {
     private String item;
@@ -16,10 +14,11 @@ public class Controler {
                 add();
                 break;
             case "2":
-                printRepository();
+                List<Record> records = select();
+                printRepository(records);
                 break;
             case "3":
-                select();
+                sort(select(),new FioComparator());
                 break;
             case "4":
                 delete();
@@ -30,16 +29,27 @@ public class Controler {
         return result;
     }
     public void add(){
-        Viewable view = new ViewAdd();
-        Record record = (Record) view.post();
-        TxtRepository txtRepo = new TxtRepository();
-        repository = new Repository(txtRepo);
-        repository.add(record);
-        txtRepo.setRecords(repository.repository);
-        txtRepo.setData();
+        Boolean flagTxt = false;
+        if(flagTxt) {
+            Viewable view = new ViewAdd();
+            Record record = (Record) view.post();
+            TxtRepository txtRepo = new TxtRepository();
+            repository = new Repository(txtRepo);
+            repository.add(record);
+            txtRepo.setRecords(repository.repository);
+            txtRepo.setData();
+        }else {
+            Viewable view = new ViewAdd();
+            Record record = (Record) view.post();
+            XmlRepository xmlRepository = new XmlRepository();
+            repository = new Repository(xmlRepository);
+            repository.add((Record) record);
+            xmlRepository.setRecords(repository.repository);
+            xmlRepository.setData();
+        }
     }
     public void delete(){
-
+        System.out.println("Извините, у вас нет доступа, обратитесь к администратору вашей системы");
     }
     public List<Record> select(){
         TxtRepository txtRepo = new TxtRepository();
@@ -47,10 +57,13 @@ public class Controler {
         List<Record> records = repository.repository;
         return records;
     }
-    public void printRepository(){
-        List<Record> records = select();
+    public void printRepository(List<Record> records){
         for(Record rec: records){
             System.out.println(String.format("%s, %s",rec.getPhone(),rec.getPerson().toString()));
         }
+    }
+    public void sort(List<Record> records,Comparator<Record> comparator){
+        Collections.sort(records, comparator);
+        printRepository(records);
     }
 }

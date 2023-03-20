@@ -9,6 +9,7 @@ public class ViewMain implements Viewable{
         while(flag){
             Menu menu = new Menu();
             Map<Integer,String> items = menu.getItems();
+            System.out.println();
             for(Integer item: items.keySet()){
                 menu.printItem(item);
             }

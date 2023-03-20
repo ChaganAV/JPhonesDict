@@ -2,10 +2,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TxtRepository extends TextFile implements Repositable {
-    public TxtRepository() {
-        super("Phone.txt");
+public class XmlRepository extends TextFile implements Repositable{
+    public XmlRepository() {
+        super("Phone.xml");
     }
+
     @Override
     public List<Record> getData() {
         List<Record> records = new ArrayList<>();
@@ -41,22 +42,21 @@ public class TxtRepository extends TextFile implements Repositable {
             }
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
+            String xmlzag = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+            NodeXml root = new NodeXml("records");
+            bw.write(xmlzag);
+            bw.newLine();
+            bw.write(root.getTagBegin());
             for(Record record: records){
-                String rec = String.format("%s;%s;",record.getPhone().getNumber(),record.getPerson().toString());
+                NodeXml node = (NodeXml) record;
+                String rec = String.format("%s;%s;",node.getPhone().getNumber(),node.getPerson().toString());
                 bw.write(rec);
                 bw.newLine();
             }
+            bw.write(root.getTagEnd());
             bw.close();
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
     }
-
-//    public List<Record> getRecords() {
-//        return records;
-//    }
-//
-//    public void setRecords(List<Record> list) {
-//        records = list;
-//    }
 }

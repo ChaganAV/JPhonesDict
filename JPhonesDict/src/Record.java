@@ -6,7 +6,9 @@ public class Record extends Line{
         this.phone = phone;
         this.person = person;
     }
+    public Record(){
 
+    }
     public Phone getPhone() {
         return phone;
     }
