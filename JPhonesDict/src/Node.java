@@ -10,13 +10,13 @@ public class Node extends Record {
         super(phone, person);
         this.name = name;
         this.tagBegin = String.format("%s%s%s",BEGIN,name,END);
-        this.tagEnd = String.format("%s%s%s",BEGIN,name,FIN);
+        this.tagEnd = String.format("%s%s%s",FIN,name,END);
     }
     public Node(String name) {
         super();
         this.name = name;
         this.tagBegin = String.format("%s%s%s",BEGIN,name,END);
-        this.tagEnd = String.format("%s%s%s",BEGIN,name,FIN);
+        this.tagEnd = String.format("%s%s%s",FIN,name,END);
     }
     public String getName() {
         return name;
@@ -39,6 +39,6 @@ public class Node extends Record {
     }
 
     public void setTagEnd(String tagEnd) {
-        this.tagEnd = String.format("%s%s%s",BEGIN,tagEnd,FIN);
+        this.tagEnd = String.format("%s%s%s",FIN,tagEnd,END);
     }
 }

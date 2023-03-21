@@ -4,17 +4,23 @@ import java.util.Scanner;
 public class ViewMain implements Viewable{
     @Override
     public void get(){
-        Boolean flag = true;
+        Boolean flagOut = true;
+        Boolean provider = true;
         Scanner scanner = new Scanner(System.in);
-        while(flag){
+        System.out.println("Выберите формат файла: 1 - txt, 2 - xml");
+        String input = scanner.nextLine();
+        if (input.equals("2")){
+            provider = false;
+        }
+        while(flagOut){
             Menu menu = new Menu();
             Map<Integer,String> items = menu.getItems();
             System.out.println();
             for(Integer item: items.keySet()){
                 menu.printItem(item);
             }
-            String input = scanner.nextLine();
-            flag = menu.inputComand(input);
+            input = scanner.nextLine();
+            flagOut = menu.inputComand(input,provider);
         }
     }
 

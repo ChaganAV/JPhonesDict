@@ -8,8 +8,8 @@ public class Menu {
         items.put(1,"добавить телефон");
         items.put(2,"вывести справочник");
         items.put(3,"отсортировать по ФИО");
-        items.put(4,"удалить телефон");
-        items.put(5,"выход");
+        //items.put(4,"удалить телефон");
+        items.put(4,"выход");
     }
 
     public Map<Integer, String> getItems() {
@@ -19,8 +19,9 @@ public class Menu {
     public void setItems(Map<Integer, String> items) {
         this.items = items;
     }
-    public Boolean inputComand(String item){
+    public Boolean inputComand(String item,Boolean provider){
         Controler controler = new Controler(item);
+        controler.setProvider(provider);
         return controler.run();
     }
     public void printItem(Integer item){
