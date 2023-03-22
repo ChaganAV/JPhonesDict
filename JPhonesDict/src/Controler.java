@@ -16,7 +16,7 @@ public class Controler {
                 break;
             case "2":
                 select();
-                //add();
+                addPhone();
                 break;
             case "3":
                 select();
@@ -48,6 +48,27 @@ public class Controler {
         Record record = (Record) view.post();
         repository.add(record);
         saveData();
+    }
+    public void addPhone(){
+        Scanner scanner = new Scanner(System.in);
+        Map<Integer,Record> mapRecord = new HashMap<>();
+        System.out.println("Выберите номер контакта: ");
+        int count = 1;
+        for(Record record: repository.records){
+            mapRecord.put(count,record);
+            System.out.println(String.format("%d, %s",count,mapRecord.get(count)));
+            count++;
+        }
+        String input = scanner.nextLine();
+        Record record = mapRecord.get(Integer.parseInt(input));
+        if(record != null){
+            PostViewable view = new ViewAddPhone(record.getPerson());
+            record = view.post();
+            repository.add(record);
+            saveData();
+        }else {
+            System.out.println(String.format("Извините, записи c номером %s нет",input));
+        }
     }
     public void delete(){
         select();
