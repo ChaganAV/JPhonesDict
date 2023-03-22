@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Controler {
     private String item;
-    private Boolean provider;
+    private Provider provider;
     Repository repository;
     public Controler(String item) {
         this.item = item;
@@ -15,69 +15,89 @@ public class Controler {
                 add();
                 break;
             case "2":
-                List<Record> records = select();
-                printRepository(records);
+                select();
+                //add();
                 break;
             case "3":
-                sort(select(),new FioComparator());
+                select();
+                printRepository();
                 break;
-//            case "4":
-//                delete();
-//                break;
             case "4":
+                select();
+                sort(repository.records,new FioComparator());
+                break;
+            case "5":
+                delete();
+                break;
+            case "6":
                 result = false;
         }
         return result;
     }
 
-    public Boolean getProvider() {
+    public Provider getProvider() {
         return provider;
     }
 
-    public void setProvider(Boolean provider) {
+    public void setProvider(Provider provider) {
         this.provider = provider;
     }
 
     public void add(){
         PostViewable view = new ViewAdd();
         Record record = (Record) view.post();
-        if(provider) {
-            TxtRepository txtRepo = new TxtRepository();
-            repository = new Repository(txtRepo);
-            repository.add(record);
-            txtRepo.setRecords(repository.repository);
-            txtRepo.setData();
-        }else {
-            XmlRepository xmlRepository = new XmlRepository();
-            repository = new Repository(xmlRepository);
-            repository.add((Record) record);
-            xmlRepository.setRecords(repository.repository);
-            xmlRepository.setData();
-        }
+        repository.add(record);
+        saveData();
     }
     public void delete(){
-        System.out.println("Извините, у вас нет доступа, обратитесь к администратору вашей системы");
+        select();
+        Scanner scanner = new Scanner(System.in);
+        Map<Integer,Record> mapRecord = new HashMap<>();
+        System.out.println("Выберите номер записи для удаления: ");
+        int count = 1;
+        for(Record record: repository.records){
+            mapRecord.put(count,record);
+            System.out.println(String.format("%d, %s",count,mapRecord.get(count)));
+            count++;
+        }
+        String input = scanner.nextLine();
+        mapRecord.remove(Integer.parseInt(input));
+        List<Record> records = new ArrayList<>();
+        for(Record record: mapRecord.values()){
+            records.add(record);
+        }
+        repository.records = records;
+        System.out.println("Если такая запись есть, она будет удалена");
+        saveData();
     }
-    public List<Record> select(){
-        List<Record> records;
-        if(provider) {
+    public void select(){
+        if(provider == Provider.TXT) {
             TxtRepository txtRepo = new TxtRepository();
             repository = new Repository(txtRepo);
-            records = repository.repository;
         }else {
             XmlRepository xmlRepo = new XmlRepository();
             repository = new Repository(xmlRepo);
-            records = repository.repository;
         }
-        return records;
     }
-    public void printRepository(List<Record> records){
-        for(Record rec: records){
+    public void printRepository(){
+        for(Record rec: repository.records){
             System.out.println(String.format("%s, %s",rec.getPhone(),rec.getPerson().toString()));
         }
     }
     public void sort(List<Record> records,Comparator<Record> comparator){
         Collections.sort(records, comparator);
-        printRepository(records);
+        //printRepository2(records);
+        printRepository();
+    }
+    public void saveData(){
+        if(provider == Provider.TXT) {
+            TxtRepository txtRepo = new TxtRepository();
+            txtRepo.setRecords(repository.records);
+            txtRepo.setData();
+        }else {
+            XmlRepository xmlRepository = new XmlRepository();
+            xmlRepository.setRecords(repository.records);
+            xmlRepository.setData();
+        }
     }
 }

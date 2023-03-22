@@ -5,12 +5,13 @@ public class ViewMain implements GetViewable{
     @Override
     public void get(){
         Boolean flagOut = true;
-        Boolean provider = true;
+        Boolean provider1 = true;
+        Provider provider = Provider.TXT;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Выберите формат файла: 1 - txt, 2 - xml");
+        System.out.println("Выберите формат файла (1 или 2): 1 - txt, 2 - xml");
         String input = scanner.nextLine();
         if (input.equals("2")){
-            provider = false;
+            provider = Provider.XML;
         }
         while(flagOut){
             Menu menu = new Menu();

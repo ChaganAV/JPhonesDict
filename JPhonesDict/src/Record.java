@@ -24,4 +24,10 @@ public class Record {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    @Override
+    public String toString() {
+        String record = String.format("%s, %s",phone,person);
+        return record;
+    }
 }

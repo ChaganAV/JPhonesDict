@@ -6,10 +6,11 @@ public class Menu {
 
     public Menu() {
         items.put(1,"добавить телефон");
-        items.put(2,"вывести справочник");
-        items.put(3,"отсортировать по ФИО");
-        //items.put(4,"удалить телефон");
-        items.put(4,"выход");
+        items.put(2,"добавить телефон к существующему контакту");
+        items.put(3,"вывести справочник");
+        items.put(4,"отсортировать по ФИО");
+        items.put(5,"удалить телефон");
+        items.put(6,"выход");
     }
 
     public Map<Integer, String> getItems() {
@@ -19,7 +20,7 @@ public class Menu {
     public void setItems(Map<Integer, String> items) {
         this.items = items;
     }
-    public Boolean inputComand(String item,Boolean provider){
+    public Boolean inputComand(String item,Provider provider){
         Controler controler = new Controler(item);
         controler.setProvider(provider);
         return controler.run();
