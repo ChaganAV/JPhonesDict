@@ -1,7 +1,7 @@
 import java.util.Map;
 import java.util.Scanner;
 
-public class ViewMain implements Viewable{
+public class ViewMain implements GetViewable{
     @Override
     public void get(){
         Boolean flagOut = true;
@@ -22,10 +22,5 @@ public class ViewMain implements Viewable{
             input = scanner.nextLine();
             flagOut = menu.inputComand(input,provider);
         }
-    }
-
-    @Override
-    public Line post() {
-        return null;
     }
 }

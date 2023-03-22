@@ -1,10 +1,6 @@
 import java.util.Scanner;
 
-public class ViewAdd implements Viewable{
-    @Override
-    public void get() {
-
-    }
+public class ViewAdd implements PostViewable{
 
     @Override
     public Record post() {

@@ -39,7 +39,7 @@ public class Controler {
     }
 
     public void add(){
-        Viewable view = new ViewAdd();
+        PostViewable view = new ViewAdd();
         Record record = (Record) view.post();
         if(provider) {
             TxtRepository txtRepo = new TxtRepository();

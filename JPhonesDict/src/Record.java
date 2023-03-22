@@ -1,4 +1,4 @@
-public class Record extends Line{
+public class Record {
     private Phone phone;
     private Person person;
 
