@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.Scanner;
 
 public class ViewAddPhone implements PostViewable{
@@ -13,7 +12,7 @@ public class ViewAddPhone implements PostViewable{
         System.out.println("Введите номер телефона в формате 99-99-99: ");
         String input = scanner.nextLine();
         Phone phone = new Phone(input);
-        this.record.getPhone().add(phone);
+        this.record.getPhones().add(phone);
         return this.record;
     }
 }

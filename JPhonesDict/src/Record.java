@@ -15,7 +15,7 @@ public class Record {
     public Record(){
 
     }
-    public List<Phone> getPhone() {
+    public List<Phone> getPhones() {
         return phones;
     }
 

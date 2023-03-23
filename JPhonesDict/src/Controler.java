@@ -80,19 +80,30 @@ public class Controler {
     public void delete(){
         select();
         Scanner scanner = new Scanner(System.in);
-        Map<Integer,Record> mapRecord = new HashMap<>();
+        Map<Integer,RecordOne> mapRecord = new HashMap<>();
         System.out.println("Выберите номер записи для удаления: ");
         int count = 1;
         for(Record record: repository.records){
-            mapRecord.put(count,record);
-            System.out.println(String.format("%d, %s",count,mapRecord.get(count)));
-            count++;
+            RecordOne recordOne = new RecordOne();
+            recordOne.setPerson(record.getPerson());
+            for(Phone phone: record.getPhones()) {
+                recordOne.setPhone(phone);
+                mapRecord.put(count, recordOne);
+                System.out.println(String.format("%d, %s", count, mapRecord.get(count)));
+                count++;
+            }
         }
         String input = scanner.nextLine();
         mapRecord.remove(Integer.parseInt(input));
         List<Record> records = new ArrayList<>();
-        for(Record record: mapRecord.values()){
-            records.add(record);
+        Set<RecordOne> setOne = new HashSet<>();
+        for(RecordOne recordOne: mapRecord.values()){
+            setOne.add(recordOne);
+        }
+        for(RecordOne recordOne: setOne){
+            if(mapRecord.containsValue(recordOne)){
+
+            }
         }
         repository.records = records;
         System.out.println("Если такая запись есть, она будет удалена");
@@ -114,7 +125,7 @@ public class Controler {
     }
     public void printRepository(){
         for(Record rec: repository.records){
-            System.out.println(String.format("%s, %s",rec.getPhone(),rec.getPerson().toString()));
+            System.out.println(String.format("%s, %s",rec.getPhones(),rec.getPerson().toString()));
         }
 //        for(Record record: repository.records){
 //            System.out.println(record.getPerson());

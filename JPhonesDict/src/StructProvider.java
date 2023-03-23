@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class StructProvider extends TextFile implements Repositable {
@@ -69,7 +68,7 @@ public class StructProvider extends TextFile implements Repositable {
                     //rec = String.format("person;%s;",record.getPerson().toString());
                     bw.write(String.format("person;%s;",record.getPerson().toString()));
                     bw.newLine();
-                    for(Phone phone: record.getPhone()) {
+                    for(Phone phone: record.getPhones()) {
                         bw.write(String.format("phone;%s;", phone.getNumber()));
                         bw.newLine();
                     }

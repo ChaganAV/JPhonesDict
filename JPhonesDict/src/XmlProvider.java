@@ -104,7 +104,7 @@ public class XmlProvider extends TextFile implements Repositable{
                 NodeXml nodePhone = new NodeXml("phone");
                 bw.newLine();
                 bw.write(nodePhone.getTagBegin());
-                bw.write(record.getPhone().toString());
+                bw.write(record.getPhones().toString());
                 bw.write(nodePhone.getTagEnd());
 
                 bw.newLine();

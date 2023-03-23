@@ -43,7 +43,7 @@ public class TxtProvider extends TextFile implements Repositable {
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
             for(Record record: records){
-                String phone = record.getPhone().toString().replace("[","");
+                String phone = record.getPhones().toString().replace("[","");
                 phone = phone.replace("]","");
                 String rec = String.format("%s;%s;",phone,record.getPerson().toString());
                 bw.write(rec);
