@@ -93,10 +93,10 @@ public class Controler {
     }
     public void select(){
         if(provider == Provider.TXT) {
-            TxtRepository txtRepo = new TxtRepository();
+            TxtProvider txtRepo = new TxtProvider();
             repository = new Repository(txtRepo);
         }else {
-            XmlRepository xmlRepo = new XmlRepository();
+            XmlProvider xmlRepo = new XmlProvider();
             repository = new Repository(xmlRepo);
         }
     }
@@ -112,13 +112,13 @@ public class Controler {
     }
     public void saveData(){
         if(provider == Provider.TXT) {
-            TxtRepository txtRepo = new TxtRepository();
+            TxtProvider txtRepo = new TxtProvider();
             txtRepo.setRecords(repository.records);
             txtRepo.setData();
         }else {
-            XmlRepository xmlRepository = new XmlRepository();
-            xmlRepository.setRecords(repository.records);
-            xmlRepository.setData();
+            XmlProvider xmlProvider = new XmlProvider();
+            xmlProvider.setRecords(repository.records);
+            xmlProvider.setData();
         }
     }
 }

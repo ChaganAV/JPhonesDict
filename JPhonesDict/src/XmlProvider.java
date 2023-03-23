@@ -2,8 +2,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XmlRepository extends TextFile implements Repositable{
-    public XmlRepository() {
+public class XmlProvider extends TextFile implements Repositable{
+    public XmlProvider() {
         super("Phone.xml");
     }
 

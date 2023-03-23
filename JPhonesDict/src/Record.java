@@ -1,6 +1,13 @@
 public class Record {
+    private int id;
     private Phone phone;
     private Person person;
+
+    public Record(int id, Phone phone, Person person) {
+        this.id = id;
+        this.phone = phone;
+        this.person = person;
+    }
 
     public Record(Phone phone, Person person) {
         this.phone = phone;
@@ -23,6 +30,14 @@ public class Record {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

@@ -2,8 +2,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TxtRepository extends TextFile implements Repositable {
-    public TxtRepository() {
+public class TxtProvider extends TextFile implements Repositable {
+    public TxtProvider() {
         super("Phone.txt");
     }
     @Override
@@ -51,12 +51,4 @@ public class TxtRepository extends TextFile implements Repositable {
             System.out.println(e.getMessage());
         }
     }
-
-//    public List<Record> getRecords() {
-//        return records;
-//    }
-//
-//    public void setRecords(List<Record> list) {
-//        records = list;
-//    }
 }

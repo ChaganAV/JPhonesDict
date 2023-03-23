@@ -1,3 +1,3 @@
 public enum Provider {
-    TXT,XML;
+    TXT,XML,STRUCT;
 }
