@@ -1,27 +1,26 @@
+import java.util.List;
+
 public class Record {
-    private int id;
-    private Phone phone;
+    private List<Phone> phones;
     private Person person;
 
-    public Record(int id, Phone phone, Person person) {
-        this.id = id;
-        this.phone = phone;
+
+    public Record(List<Phone> phones, Person person) {
+        this.phones = phones;
         this.person = person;
     }
-
-    public Record(Phone phone, Person person) {
-        this.phone = phone;
+    public Record(Person person){
         this.person = person;
     }
     public Record(){
 
     }
-    public Phone getPhone() {
-        return phone;
+    public List<Phone> getPhone() {
+        return phones;
     }
 
-    public void setPhone(Phone phone) {
-        this.phone = phone;
+    public void setPhone(List<Phone> phones) {
+        this.phones = phones;
     }
 
     public Person getPerson() {
@@ -32,17 +31,9 @@ public class Record {
         this.person = person;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
-        String record = String.format("%s, %s",phone,person);
+        String record = String.format("%s, %s",phones,person);
         return record;
     }
 }

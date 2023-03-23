@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Node extends Record {
     private String name;
     private final String BEGIN = "<";
@@ -6,8 +8,8 @@ public class Node extends Record {
     private String tagBegin;
     private String tagEnd;
 
-    public Node(String name,Phone phone, Person person) {
-        super(phone, person);
+    public Node(String name, List<Phone> phones, Person person) {
+        super(phones, person);
         this.name = name;
         this.tagBegin = String.format("%s%s%s",BEGIN,name,END);
         this.tagEnd = String.format("%s%s%s",FIN,name,END);

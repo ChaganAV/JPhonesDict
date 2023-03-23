@@ -16,13 +16,14 @@ public class TxtProvider extends TextFile implements Repositable {
                 BufferedReader br = new BufferedReader(fr);
                 while (br.ready()){
                     String[] line = br.readLine().split(";");
-                    Phone phone = new Phone(line[0]);
+                    List<Phone> phones = new ArrayList<>();
+                    phones.add(new Phone(line[0]));
                     Person person = new Person();
                     String[] fio = line[1].split(" ");
                     person.setFirstname(fio[0]);
                     person.setSecondname(fio[1]);
                     person.setLastname(fio[2]);
-                    Record record = new Record(phone,person);
+                    Record record = new Record(phones,person);
                     records.add(record);
                 }
             }
@@ -42,7 +43,7 @@ public class TxtProvider extends TextFile implements Repositable {
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
             for(Record record: records){
-                String rec = String.format("%s;%s;",record.getPhone().getNumber(),record.getPerson().toString());
+                String rec = String.format("%s;%s;",record.getPhone(),record.getPerson().toString());
                 bw.write(rec);
                 bw.newLine();
             }

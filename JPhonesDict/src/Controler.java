@@ -62,7 +62,7 @@ public class Controler {
         String input = scanner.nextLine();
         Record record = mapRecord.get(Integer.parseInt(input));
         if(record != null){
-            PostViewable view = new ViewAddPhone(record.getPerson());
+            PostViewable view = new ViewAddPhone(record);
             record = view.post();
             repository.add(record);
             saveData();
@@ -95,9 +95,14 @@ public class Controler {
         if(provider == Provider.TXT) {
             TxtProvider txtRepo = new TxtProvider();
             repository = new Repository(txtRepo);
-        }else {
+        }
+        if(provider == Provider.XML){
             XmlProvider xmlRepo = new XmlProvider();
             repository = new Repository(xmlRepo);
+        }
+        if(provider == Provider.STRUCT){
+            StructProvider structProvider = new StructProvider();
+            repository = new Repository(structProvider);
         }
     }
     public void printRepository(){
@@ -115,10 +120,16 @@ public class Controler {
             TxtProvider txtRepo = new TxtProvider();
             txtRepo.setRecords(repository.records);
             txtRepo.setData();
-        }else {
+        }
+        if(provider == Provider.XML){
             XmlProvider xmlProvider = new XmlProvider();
             xmlProvider.setRecords(repository.records);
             xmlProvider.setData();
+        }
+        if(provider == Provider.STRUCT){
+            StructProvider structProvider = new StructProvider();
+            structProvider.setRecords(repository.records);
+            structProvider.setData();
         }
     }
 }

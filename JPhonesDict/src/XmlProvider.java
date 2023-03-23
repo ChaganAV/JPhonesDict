@@ -40,9 +40,10 @@ public class XmlProvider extends TextFile implements Repositable{
                         phoneString = s.substring(s.indexOf(nodePhone.getTagBegin())+nodePhone.getTagBegin().length(),s.indexOf(nodePhone.getTagEnd()));
                     }
                     if(s.contains(contact.getTagEnd())){
-                        Phone phone = new Phone(phoneString);
+                        List<Phone> phones = new ArrayList<>();
+                        phones.add(new Phone(phoneString));
                         Person person = new Person(firstname,secondname,lastname);
-                        Record record = new Record(phone,person);
+                        Record record = new Record(phones,person);
                         records.add(record);
                     }
                 }
@@ -103,7 +104,7 @@ public class XmlProvider extends TextFile implements Repositable{
                 NodeXml nodePhone = new NodeXml("phone");
                 bw.newLine();
                 bw.write(nodePhone.getTagBegin());
-                bw.write(record.getPhone().getNumber());
+                bw.write(record.getPhone().toString());
                 bw.write(nodePhone.getTagEnd());
 
                 bw.newLine();
