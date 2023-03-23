@@ -18,28 +18,32 @@ public class StructProvider extends TextFile implements Repositable {
                 BufferedReader br = new BufferedReader(fr);
                 Person person = new Person();
                 List<Phone> phones = new ArrayList<>();
-                Record record = new Record();
+                //Record record = new Record();
                 while (br.ready()){
                     String[] line = br.readLine().split(";");
                     if(line[0].equals("person")){
                         if(phones.size()>0){
+                            Record record = new Record();
+                            record.setPerson(person);
                             record.setPhone(phones);
                             records.add(record);
-                            phones.clear();
+                            phones = new ArrayList<>();
                         }
                         String[] fio = line[1].split(" ");
-                        //Person person = new Person();
+                        person = new Person();
                         person.setFirstname(fio[0]);
                         person.setSecondname(fio[1]);
                         person.setLastname(fio[2]);
-                        record.setPerson(person);
+                        //record.setPerson(person);
                     }else {
                         phones.add(new Phone(line[1]));
                     }
                     //Record record = new Record();
                     //records.add(record);
                 }
-                record.setPhone(phones);
+                Record record = new Record(phones,person);
+                //record.setPhone(phones);
+                records.add(record);
             }
         }catch (IOException e){
             System.out.println(e.getMessage());

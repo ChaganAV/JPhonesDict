@@ -60,11 +60,18 @@ public class Controler {
             count++;
         }
         String input = scanner.nextLine();
-        Record record = mapRecord.get(Integer.parseInt(input));
+        Record record = mapRecord.remove(Integer.parseInt(input));
+        //mapRecord.remove(Integer.parseInt(input));
         if(record != null){
             PostViewable view = new ViewAddPhone(record);
             record = view.post();
-            repository.add(record);
+            mapRecord.put(Integer.parseInt(input),record);
+            List<Record> records = new ArrayList<>();
+            for(Record rec: mapRecord.values()){
+                records.add(rec);
+            }
+            repository.records = records;
+            //repository.add(record);
             saveData();
         }else {
             System.out.println(String.format("Извините, записи c номером %s нет",input));
@@ -109,6 +116,12 @@ public class Controler {
         for(Record rec: repository.records){
             System.out.println(String.format("%s, %s",rec.getPhone(),rec.getPerson().toString()));
         }
+//        for(Record record: repository.records){
+//            System.out.println(record.getPerson());
+//            for(Phone phone: record.getPhone()){
+//                System.out.println(phone);
+//            }
+//        }
     }
     public void sort(List<Record> records,Comparator<Record> comparator){
         Collections.sort(records, comparator);
