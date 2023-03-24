@@ -65,6 +65,7 @@ public class Controler {
         if(record != null){
             PostViewable view = new ViewAddPhone(record);
             record = view.post();
+
             mapRecord.put(Integer.parseInt(input),record);
             List<Record> records = new ArrayList<>();
             for(Record rec: mapRecord.values()){
@@ -84,9 +85,11 @@ public class Controler {
         System.out.println("Выберите номер записи для удаления: ");
         int count = 1;
         for(Record record: repository.records){
-            RecordOne recordOne = new RecordOne();
-            recordOne.setPerson(record.getPerson());
-            for(Phone phone: record.getPhones()) {
+            List<Phone> phones = record.getPhones();
+            for(Phone phone: phones) {
+                System.out.println(phone);
+                RecordOne recordOne = new RecordOne();
+                recordOne.setPerson(record.getPerson());
                 recordOne.setPhone(phone);
                 mapRecord.put(count, recordOne);
                 System.out.println(String.format("%d, %s", count, mapRecord.get(count)));
@@ -97,13 +100,17 @@ public class Controler {
         mapRecord.remove(Integer.parseInt(input));
         List<Record> records = new ArrayList<>();
         Set<RecordOne> setOne = new HashSet<>();
-        for(RecordOne recordOne: mapRecord.values()){
-            setOne.add(recordOne);
-        }
         for(RecordOne recordOne: setOne){
-            if(mapRecord.containsValue(recordOne)){
-
+            Record record = new Record();
+            record.setPerson(recordOne.getPerson());
+            List<Phone> phones = new ArrayList<>();
+            for(RecordOne mapRec: mapRecord.values()){
+                if(mapRec.getPerson().equals(recordOne.getPerson())){
+                    phones.add(mapRec.getPhone());
+                }
             }
+            record.setPhones(phones);
+            records.add(record);
         }
         repository.records = records;
         System.out.println("Если такая запись есть, она будет удалена");

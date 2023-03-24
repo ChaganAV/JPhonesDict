@@ -24,7 +24,7 @@ public class StructProvider extends TextFile implements Repositable {
                         if(phones.size()>0){
                             Record record = new Record();
                             record.setPerson(person);
-                            record.setPhone(phones);
+                            record.setPhones(phones);
                             records.add(record);
                             phones = new ArrayList<>();
                         }

@@ -16,10 +16,10 @@ public class Record {
 
     }
     public List<Phone> getPhones() {
-        return phones;
+        return this.phones;
     }
 
-    public void setPhone(List<Phone> phones) {
+    public void setPhones(List<Phone> phones) {
         this.phones = phones;
     }
 
