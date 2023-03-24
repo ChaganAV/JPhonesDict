@@ -36,4 +36,9 @@ public class Record {
         String record = String.format("%s, %s",phones,person);
         return record;
     }
+    public void printPhone(){
+        for(Phone phone: this.phones){
+            System.out.println(phone.getNumber());
+        }
+    }
 }

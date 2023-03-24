@@ -15,8 +15,10 @@ public class ViewAddPhone implements PostViewable{
         Phone phone = new Phone(input);
         List<Phone> phones = this.record.getPhones();
         phones.add(phone);
-        for(Phone phone1: phones) System.out.println(phone1);
+        //for(Phone phone1: phones) System.out.println(phone1);
         this.record.setPhones(phones);
+        System.out.println("test");
+        this.record.printPhone();
         return this.record;
     }
 }

@@ -61,6 +61,13 @@ public class Controler {
         }
         String input = scanner.nextLine();
         Record record = mapRecord.remove(Integer.parseInt(input));
+        System.out.println("после удаления из mapRecord");
+        for(Record rec: mapRecord.values()) {
+            System.out.println(rec.getPerson());
+            for(Phone ph: rec.getPhones()) {
+                System.out.println(ph.getNumber());
+            }
+        }
         //mapRecord.remove(Integer.parseInt(input));
         if(record != null){
             PostViewable view = new ViewAddPhone(record);
