@@ -61,14 +61,6 @@ public class Controler {
         }
         String input = scanner.nextLine();
         Record record = mapRecord.remove(Integer.parseInt(input));
-        //System.out.println("после удаления из mapRecord");
-        //for(Record rec: mapRecord.values()) {
-            //System.out.println(rec.getPerson());
-//            for(Phone ph: rec.getPhones()) {
-//                System.out.println(ph.getNumber());
-//            }
-//        }
-        //mapRecord.remove(Integer.parseInt(input));
         if(record != null){
             PostViewable view = new ViewAddPhone(record);
             record = view.post();
@@ -79,7 +71,6 @@ public class Controler {
                 records.add(rec);
             }
             repository.records = records;
-            //repository.add(record);
             saveData();
         }else {
             System.out.println(String.format("Извините, записи c номером %s нет",input));

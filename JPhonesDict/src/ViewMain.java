@@ -8,11 +8,12 @@ public class ViewMain implements GetViewable{
         Boolean provider1 = true;
         Provider provider = Provider.TXT;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Выберите формат файла (1 или 2): 1 - txt, 2 - xml, 3 - txt структурированный");
+        //System.out.println("Выберите формат файла: 1 - txt, 2 - xml, 3 - txt структурированный");
+        System.out.println("Выберите формат файла (1 или 2): 1 - txt, 2 - txt структурированный");
         String input = scanner.nextLine();
         if (input.equals("1")) provider = Provider.TXT;
-        if (input.equals("2")) provider = Provider.XML;
-        if (input.equals("3")) provider = Provider.STRUCT;
+        //if (input.equals("2")) provider = Provider.XML;
+        if (input.equals("2")) provider = Provider.STRUCT;
         while(flagOut){
             Menu menu = new Menu();
             Map<Integer,String> items = menu.getItems();
