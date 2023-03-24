@@ -17,7 +17,9 @@ public class TxtProvider extends TextFile implements Repositable {
                 while (br.ready()){
                     String[] line = br.readLine().split(";");
                     List<Phone> phones = new ArrayList<>();
-                    phones.add(new Phone(line[0]));
+                    String[] linePhones = line[0].split(",");
+                    for(String l: linePhones)
+                        phones.add(new Phone(l.trim()));
                     Person person = new Person();
                     String[] fio = line[1].split(" ");
                     person.setFirstname(fio[0]);

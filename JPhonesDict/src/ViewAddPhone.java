@@ -17,8 +17,8 @@ public class ViewAddPhone implements PostViewable{
         phones.add(phone);
         //for(Phone phone1: phones) System.out.println(phone1);
         this.record.setPhones(phones);
-        System.out.println("test");
-        this.record.printPhone();
+//        System.out.println("test");
+//        this.record.printPhone();
         return this.record;
     }
 }

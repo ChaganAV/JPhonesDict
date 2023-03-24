@@ -61,13 +61,13 @@ public class Controler {
         }
         String input = scanner.nextLine();
         Record record = mapRecord.remove(Integer.parseInt(input));
-        System.out.println("после удаления из mapRecord");
-        for(Record rec: mapRecord.values()) {
-            System.out.println(rec.getPerson());
-            for(Phone ph: rec.getPhones()) {
-                System.out.println(ph.getNumber());
-            }
-        }
+        //System.out.println("после удаления из mapRecord");
+        //for(Record rec: mapRecord.values()) {
+            //System.out.println(rec.getPerson());
+//            for(Phone ph: rec.getPhones()) {
+//                System.out.println(ph.getNumber());
+//            }
+//        }
         //mapRecord.remove(Integer.parseInt(input));
         if(record != null){
             PostViewable view = new ViewAddPhone(record);
@@ -89,12 +89,12 @@ public class Controler {
         select();
         Scanner scanner = new Scanner(System.in);
         Map<Integer,RecordOne> mapRecord = new HashMap<>();
-        System.out.println("Выберите номер записи для удаления: ");
+
         int count = 1;
         for(Record record: repository.records){
             List<Phone> phones = record.getPhones();
             for(Phone phone: phones) {
-                System.out.println(phone);
+                //System.out.println(phone);
                 RecordOne recordOne = new RecordOne();
                 recordOne.setPerson(record.getPerson());
                 recordOne.setPhone(phone);
@@ -103,16 +103,20 @@ public class Controler {
                 count++;
             }
         }
+        System.out.println("Выберите номер записи для удаления: ");
         String input = scanner.nextLine();
         mapRecord.remove(Integer.parseInt(input));
         List<Record> records = new ArrayList<>();
-        Set<RecordOne> setOne = new HashSet<>();
-        for(RecordOne recordOne: setOne){
+        Set<Person> setOne = new HashSet<>();
+        for(RecordOne rec: mapRecord.values()){
+            setOne.add(rec.getPerson());
+        }
+        for(Person person: setOne){
             Record record = new Record();
-            record.setPerson(recordOne.getPerson());
+            record.setPerson(person);
             List<Phone> phones = new ArrayList<>();
             for(RecordOne mapRec: mapRecord.values()){
-                if(mapRec.getPerson().equals(recordOne.getPerson())){
+                if(mapRec.getPerson().equals(person)){
                     phones.add(mapRec.getPhone());
                 }
             }
